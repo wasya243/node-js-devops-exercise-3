@@ -32,6 +32,13 @@ jobs:
               cd ~/node-js-devops-exercise-3
             fi
 
+            echo "Writing .env file..."
+            cat <<EOF > .env
+            MONGO_URI=${{ secrets.MONGO_URI }}
+            PORT=${{ secrets.PORT }}
+            EOF
+            echo "Wrote .env file"
+
             echo "Installing deps..."
             yarn
             echo "Installed deps"
