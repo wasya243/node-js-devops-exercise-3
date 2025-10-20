@@ -33,7 +33,7 @@ jobs:
             fi
 
             echo "Installing deps..."
-            npm install
+            yarn
             echo "Installed deps"
 
             pm2 describe hello-server > /dev/null
