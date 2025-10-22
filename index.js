@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-require('dotenv').config()
+// require('dotenv').config()
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
