@@ -32,13 +32,6 @@ jobs:
               cd ~/node-js-devops-exercise-3
             fi
 
-            echo "Writing .env file..."
-            cat <<EOF > .env
-            MONGO_URI=${{ secrets.MONGO_URI }}
-            PORT=${{ secrets.PORT }}
-            EOF
-            echo "Wrote .env file"
-
             echo "Installing deps..."
             yarn
             echo "Installed deps"
@@ -46,10 +39,14 @@ jobs:
             pm2 describe hello-server > /dev/null
             if [ $? -eq 0 ]; then
               echo "Restarting existing PM2 process..."
+              export MONGO_URI="${{ secrets.MONGO_URI }}"
+              export PORT="${{ secrets.PORT }}"
               pm2 restart hello-server
               echo "Restarted process"
             else
               echo "Starting new PM2 process..."
+              export MONGO_URI="${{ secrets.MONGO_URI }}"
+              export PORT="${{ secrets.PORT }}"
               pm2 start index.js --name hello-server
               echo "Started process"
             fi
