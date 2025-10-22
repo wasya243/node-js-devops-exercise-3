@@ -41,12 +41,12 @@ jobs:
               echo "Restarting existing PM2 process..."
               export MONGO_URI="${{ secrets.MONGO_URI }}"
               export PORT="${{ secrets.PORT }}"
-              pm2 restart hello-server
+              pm2 restart hello-server --update-env
               echo "Restarted process"
             else
               echo "Starting new PM2 process..."
               export MONGO_URI="${{ secrets.MONGO_URI }}"
               export PORT="${{ secrets.PORT }}"
-              pm2 start index.js --name hello-server
+              pm2 start index.js --name hello-server --update-env
               echo "Started process"
             fi
